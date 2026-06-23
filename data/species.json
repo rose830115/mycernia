@@ -415,40 +415,120 @@
     }
   ],
   "demo": {
-    "axis": "locus",
-    "query_name": "Unknown isolate — an Aspergillus niger strain",
-    "headline": {
-      "text": "For Aspergillus, ITS alone uniquely identifies 34% of isolates; three loci raise it to 73%.",
-      "single": "34%",
-      "multi": "73%",
-      "source": "Validation paper Table 5 (Aspergillus). Overall across 26 genera: 50% → 83% (Table 4)."
-    },
-    "modes": {
-      "single": {
-        "label": "ITS only",
-        "lanes": "1 locus",
-        "sample_lanes": 1,
-        "verdict": "Ambiguous — candidate set",
-        "unique": false,
-        "candidates": [
-          "Aspergillus niger",
-          "Aspergillus tubingensis",
-          "Aspergillus awamori"
+    "samples": [
+      {
+        "id": "s1",
+        "chip": "Black mould, stored grain",
+        "query_name": "Unknown isolate #1",
+        "bands": [
+          [
+            0.8,
+            0.88
+          ],
+          [
+            0.74,
+            0.82
+          ],
+          [
+            0.7
+          ]
         ],
-        "candidates_more": "and further Aspergillus that share this ITS pattern",
-        "annotation": "At ITS alone the black-aspergillus species share the same restriction profile and cannot be separated — the classic cryptic-species problem (Varga et al. 2011)."
+        "steps": [
+          "Detecting marker and sample bands",
+          "Calibrating to the 100 bp ladder",
+          "Matching across three loci"
+        ],
+        "result": {
+          "label": "Known",
+          "kind": "good",
+          "verdict": "Unique identification",
+          "top1": "Aspergillus niger",
+          "detail": "Matched uniquely across ITS + β-tubulin + calmodulin (Tier A).",
+          "recommendation": "High-confidence call — confirm by sequencing for clinical or regulatory decisions."
+        },
+        "lesson": {
+          "bands": [
+            [
+              0.8,
+              0.88
+            ]
+          ],
+          "candidates": [
+            "Aspergillus niger",
+            "Aspergillus tubingensis",
+            "Aspergillus awamori"
+          ],
+          "note": "With ITS alone these black-aspergillus species share one restriction profile and can't be separated (Varga et al. 2011). The two extra loci are what make the call unique.",
+          "rate": "Aspergillus: ITS alone 34% → three loci 73% unique (validation paper Table 5)."
+        }
       },
-      "multi": {
-        "label": "ITS + β-tubulin + calmodulin",
-        "lanes": "3 loci",
-        "sample_lanes": 3,
-        "verdict": "Unique identification",
-        "unique": true,
-        "top1": "Aspergillus niger",
-        "annotation": "Two more loci on the same gel break the tie — only A. niger matches across all three."
+      {
+        "id": "s2",
+        "chip": "Soil isolate, vascular wilt",
+        "query_name": "Unknown isolate #2",
+        "bands": [
+          [
+            0.5,
+            0.66
+          ],
+          [
+            0.6
+          ],
+          [
+            0.44,
+            0.78
+          ]
+        ],
+        "steps": [
+          "Detecting marker and sample bands",
+          "Calibrating to the 100 bp ladder",
+          "Matching across three loci"
+        ],
+        "result": {
+          "label": "Known",
+          "kind": "good",
+          "verdict": "Unique identification",
+          "top1": "Fusarium oxysporum",
+          "detail": "Matched uniquely across ITS + RPB2 + TEF1-α (Tier A, leave-one-out 100%).",
+          "recommendation": "High-confidence call — sequence to confirm for high-consequence use."
+        }
+      },
+      {
+        "id": "s3",
+        "chip": "Biocontrol Trichoderma",
+        "query_name": "Unknown isolate #3",
+        "bands": [
+          [
+            0.64,
+            0.72
+          ],
+          [
+            0.64,
+            0.72
+          ],
+          [
+            0.58
+          ]
+        ],
+        "steps": [
+          "Detecting marker and sample bands",
+          "Calibrating to the 100 bp ladder",
+          "Matching across three loci"
+        ],
+        "result": {
+          "label": "Ambiguous",
+          "kind": "warn",
+          "verdict": "Ambiguous — candidate set",
+          "candidates": [
+            "Trichoderma harzianum",
+            "Trichoderma viride"
+          ],
+          "detail": "These two are RFLP-indistinguishable — a hard wall at this resolution.",
+          "recommendation": "Sequencing recommended to resolve the pair."
+        }
       }
-    },
-    "source": "Candidate set derived from Mycernia's ITS fingerprints; per-locus identification rates from the validation paper (Tables 4-5). Gels shown are schematic illustrations."
+    ],
+    "source": "Demonstration on preset samples; outcomes follow the validation results (Tables 4-6). Gels are schematic illustrations, not real fingerprints."
   },
   "validation": {
     "self_vs_loo": {

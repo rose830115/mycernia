@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=8">
+<link rel="stylesheet" href="assets/style.css?v=9">
 </head>
 <body>
 
@@ -84,25 +84,23 @@
     <div class="wrap">
       <div class="section-head">
         <div class="eyebrow">Try identification</div>
-        <h2>One gene can't separate look-alikes. Three can.</h2>
-        <p>Single-locus tools read one marker (ITS). But close relatives often share an identical ITS pattern. Mycernia reads three loci on the same gel — switch between them and watch an ambiguous call resolve to a single species.</p>
+        <h2>Watch an unknown isolate get a name.</h2>
+        <p>Pick a sample and run it. Mycernia reads the three-locus gel, calibrates the bands, and returns a calibrated call — known, ambiguous, or unknown. A guided demonstration on preset samples.</p>
       </div>
 
-      <div class="toggle" id="fp-toggle" role="tablist" aria-label="Marker loci">
-        <button data-mode="single" role="tab">ITS only</button>
-        <button data-mode="multi" class="on" role="tab" aria-selected="true">ITS + β-tubulin + calmodulin</button>
-      </div>
+      <div class="sample-picker" id="sample-picker"><!-- chips by app.js --></div>
 
       <div class="demo-stage">
         <div class="query-panel">
-          <div class="lab">What Mycernia reads · <span id="q-lanes">3 loci</span></div>
+          <div class="lab">Sample gel · <span id="q-lanes">3 loci</span></div>
           <div class="qname" id="q-name">—</div>
           <div class="gel schematic" id="q-gel"><!-- schematic SVG injected by app.js --></div>
           <div class="schematic-cap">Schematic — illustrative banding, not a real fingerprint</div>
         </div>
-        <div>
-          <div class="result good" id="demo-result"><!-- rendered by app.js --></div>
-          <div class="headline-strip" id="demo-headline"><!-- rendered by app.js --></div>
+        <div class="run-panel">
+          <button class="run-btn" id="run-btn" type="button">Identify this sample</button>
+          <div class="run-steps" id="run-steps"></div>
+          <div class="result" id="demo-result" hidden><!-- rendered by app.js --></div>
         </div>
       </div>
     </div>
@@ -184,7 +182,7 @@
   <div class="modal" id="modal" role="dialog" aria-modal="true"><!-- rendered by app.js --></div>
 </div>
 
-<script src="data/species.js?v=8"></script>
-<script src="assets/app.js?v=8"></script>
+<script src="data/species.js?v=9"></script>
+<script src="assets/app.js?v=9"></script>
 </body>
 </html>
