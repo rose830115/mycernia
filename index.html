@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mycernia — Multi-locus PCR–RFLP Fungal Identification</title>
+<meta name="description" content="Mycernia identifies filamentous fungi from a single agarose gel using multi-locus PCR–RFLP fingerprints — validated honestly, out-of-sample.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css?v=7">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="brand">
+      <img class="brand-logo" src="assets/brand/ycm-mark.png" alt="YCM">
+      <span class="brand-div"></span>
+      <span class="word">Mycernia</span>
+    </div>
+    <nav>
+      <a href="#database" class="hide-sm">Database</a>
+      <a href="#identify">Try identification</a>
+      <a href="#trust" class="hide-sm">Why trust it</a>
+      <a href="#cta">Contact</a>
+      <span class="pill-demo">Research preview</span>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="wrap">
+      <h1>Identify filamentous fungi from <span class="accent">a single gel</span>.</h1>
+      <p class="lede">Mycernia matches multi-locus PCR–RFLP banding patterns against a curated reference database — no sequencer, no mass spectrometer. Multi-locus, multi-fingerprint, and benchmarked <em>out-of-sample</em> rather than against itself.</p>
+      <div class="stat-chips">
+        <span class="chip"><b>175</b><span>species in validated scope</span></span>
+        <span class="chip"><b>26</b><span>genera</span></span>
+        <span class="chip"><b>6</b><span>marker loci</span></span>
+        <span class="chip"><b>3-locus</b><span>panel per genus</span></span>
+      </div>
+      <p class="preview-note">Research preview — an interactive 21-species window into a larger curated database. Not yet for diagnostic use (see <a href="#trust">Why trust it</a>).</p>
+    </div>
+  </section>
+
+  <!-- anonymised fingerprint-library showcase (no species/locus labels) -->
+  <div class="gel-texture">
+    <div class="gel-row">
+      <img src="assets/gels/texture/tex_01.png" alt="reference gel">
+      <img src="assets/gels/texture/tex_02.png" alt="reference gel">
+      <img src="assets/gels/texture/tex_03.png" alt="reference gel">
+      <img src="assets/gels/texture/tex_04.png" alt="reference gel">
+      <img src="assets/gels/texture/tex_05.png" alt="reference gel">
+      <img src="assets/gels/texture/tex_06.png" alt="reference gel">
+      <img src="assets/gels/texture/tex_07.png" alt="reference gel">
+      <img src="assets/gels/texture/tex_08.png" alt="reference gel">
+    </div>
+    <span class="gel-texture-cap">A glimpse of the fingerprint library — 163 reference gels across 26 genera</span>
+  </div>
+
+  <!-- DATABASE / BROWSE -->
+  <section id="database">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">The fingerprint database</div>
+        <h2>175 species, scored honestly.</h2>
+        <p>Each species carries a genus-specific three-locus panel and a leave-one-out (LOO) identification rate — the share of held-out isolates it identifies uniquely. We show the rate as-is, including where it is low. Click a row for details.</p>
+      </div>
+      <div class="legend">
+        <span><span class="tier A">Tier A</span> high confidence</span>
+        <span><span class="tier B">Tier B</span> moderate</span>
+        <span><span class="tier C">Tier C</span> low / candidate</span>
+        <span><span class="wallflag">⚠</span> RFLP-indistinguishable pair — sequencing recommended</span>
+      </div>
+      <div id="species-groups"><!-- rendered by app.js --></div>
+    </div>
+  </section>
+
+  <!-- IDENTIFY DEMO -->
+  <section id="identify">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Try identification</div>
+        <h2>One gene can't separate look-alikes. Three can.</h2>
+        <p>Single-locus tools read one marker (ITS). But close relatives often share an identical ITS pattern. Mycernia reads three loci on the same gel — switch between them and watch an ambiguous call resolve to a single species.</p>
+      </div>
+
+      <div class="toggle" id="fp-toggle" role="tablist" aria-label="Marker loci">
+        <button data-mode="single" role="tab">ITS only</button>
+        <button data-mode="multi" class="on" role="tab" aria-selected="true">ITS + β-tubulin + calmodulin</button>
+      </div>
+
+      <div class="demo-stage">
+        <div class="query-panel">
+          <div class="lab">What Mycernia reads · <span id="q-lanes">3 loci</span></div>
+          <div class="qname" id="q-name">—</div>
+          <div class="gel schematic" id="q-gel"><!-- schematic SVG injected by app.js --></div>
+          <div class="schematic-cap">Schematic — illustrative banding, not a real fingerprint</div>
+        </div>
+        <div>
+          <div class="result good" id="demo-result"><!-- rendered by app.js --></div>
+          <div class="headline-strip" id="demo-headline"><!-- rendered by app.js --></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY TRUST IT -->
+  <section id="trust">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Why trust it</div>
+        <h2>Honest by design.</h2>
+        <p>Most in-silico RFLP tools report how well they match clean references against themselves. We measured something harder — and report it plainly.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="n">01</div>
+          <h3>Self-validation flatters.</h3>
+          <p>Matching a species against its own stored pattern looks near-perfect — but it only proves the software runs, not that it can name an unseen isolate.</p>
+          <div class="figmetric">Self-score <b>0.988</b> &nbsp;vs&nbsp; real out-of-sample <b>30–45%</b><br><span class="muted">overstated by 66–81 points in <em>Aspergillus</em></span></div>
+        </div>
+        <div class="step">
+          <div class="n">02</div>
+          <h3>Multi-locus recovers it.</h3>
+          <p>Covering intraspecific variation with multiple fingerprints, confirmed across three loci, recovers most of the gap — honestly, on held-out isolates.</p>
+          <div class="figmetric">Sequence layer <b>65% → 83%</b><br>Image layer (new strains) <b>31% → 100%</b></div>
+        </div>
+        <div class="step">
+          <div class="n">03</div>
+          <h3>A triage tool, not a verdict.</h3>
+          <p>Mycernia returns its nearest candidate and a calibrated label, and recommends sequencing whenever the call is clinical, regulatory, or possibly out-of-scope.</p>
+          <div class="figmetric"><span class="muted">Out-of-scope material is hard to flag — confirm novelty by sequencing, never by gel alone.</span></div>
+        </div>
+      </div>
+
+      <div class="figs">
+        <figure><img src="assets/figures/Fig2_self_vs_LOO.png" alt="Self vs out-of-sample"><figcaption>Self-validation vs out-of-sample identification across 26 genera. Points below the line are overestimates.</figcaption></figure>
+        <figure><img src="assets/figures/Fig3_multifingerprint.png" alt="Multi-fingerprint ablation"><figcaption>Single representative vs multiple fingerprints — unique identification rises and false positives fall.</figcaption></figure>
+        <figure><img src="assets/figures/Fig4_end_to_end.png" alt="End-to-end image identification"><figcaption>End-to-end on rendered gels: new-strain queries recovered from 31% to 100% correct.</figcaption></figure>
+      </div>
+
+      <table class="postable">
+        <thead>
+          <tr><th>Method</th><th>Cost</th><th>Turnaround</th><th>Equipment barrier</th><th>Marker loci</th><th>Interpretation</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Morphology</td><td>Low</td><td>Days–weeks</td><td>Microscope + expertise</td><td>—</td><td>Subjective</td></tr>
+          <tr><td>Sanger ITS sequencing</td><td>Moderate</td><td>1–several days</td><td>Sequencer + bioinformatics</td><td>Usually 1</td><td>Objective</td></tr>
+          <tr><td>MALDI-TOF MS</td><td>High instrument</td><td>Minutes</td><td>Mass spec + proprietary DB</td><td>—</td><td>Automated</td></tr>
+          <tr><td>Manual PCR–RFLP</td><td>Low</td><td>Hours</td><td>Thermocycler + gel rig</td><td>1–few</td><td>Subjective (visual)</td></tr>
+          <tr><td>In-silico PCR–RFLP (e.g. FId)</td><td>Low</td><td>Hours</td><td>Thermocycler + gel rig</td><td>Typically 1 (ITS)</td><td>Automated match</td></tr>
+          <tr class="rei"><td>Mycernia (this work)</td><td>Low</td><td>Hours</td><td>Thermocycler + gel rig + camera</td><td>3 (multi-locus)</td><td>Automated image match</td></tr>
+        </tbody>
+      </table>
+
+      <div class="disclaimer">
+        <strong>Validation status.</strong> Results to date are based on sequence-derived and rendered-gel inputs. Validation on real, photographed gels — the necessary next step before any diagnostic, agricultural, or environmental deployment — is in progress. Mycernia is positioned as a triage and prioritisation tool to be confirmed by sequencing for high-consequence decisions.
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER CTA -->
+<footer id="cta">
+  <div class="wrap">
+    <h2>The full multi-locus identification service is coming.</h2>
+    <p>We are extending Mycernia from this preview to the complete curated database with gel-image upload and calibrated reporting. Want early access, or to put your isolates through it? Talk to us.</p>
+    <div class="cta-actions">
+      <a class="btn primary" href="mailto:rose.chen@asiaycm.com?subject=Mycernia%20early%20access">Request early access</a>
+      <a class="btn ghost" href="mailto:rose.chen@asiaycm.com?subject=Mycernia%20demo%20for%20our%20lab">Book a demo for your lab</a>
+    </div>
+    <div class="foot-meta">
+      <img src="assets/brand/ycm-lockup-white.png" alt="YCM — Global Mold Authority">
+      <div class="cite">
+        Mycernia is developed by YCM — Global Mold Authority. Method: honest out-of-sample validation of a multi-locus PCR–RFLP fingerprint database with multi-profile image matching for fungal species identification.<br>
+        Research preview on a public-safe subset. Restriction-enzyme identities, matching parameters, and the gel renderer are maintained as trade secrets and are not exposed here.
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- species detail modal -->
+<div class="modal-bg" id="modal-bg">
+  <div class="modal" id="modal" role="dialog" aria-modal="true"><!-- rendered by app.js --></div>
+</div>
+
+<script src="data/species.js?v=7"></script>
+<script src="assets/app.js?v=7"></script>
+</body>
+</html>
