@@ -176,9 +176,10 @@ section { padding: 84px 0; border-bottom: 1px solid var(--line); }
 #cta h2 { font-size: 38px; font-weight: 800; color: #fff; max-width: 720px; }
 #cta p { font-size: 18px; color: rgba(255,255,255,0.82); max-width: 620px; margin: 18px 0 0; }
 .cta-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
-.btn { display: inline-block; font-weight: 600; font-size: 16px; border-radius: var(--r-pill); padding: 13px 26px; transition: transform .12s, background .15s; }
+.btn { display: inline-block; font-family: inherit; font-weight: 600; font-size: 16px; line-height: 1.2; border: 0; cursor: pointer; border-radius: var(--r-pill); padding: 13px 26px; transition: transform .12s, background .15s; }
 .btn:active { transform: scale(0.96); }
 .btn.primary { background: var(--lemon); color: var(--green); }
+.btn.copied { background: var(--celadon); color: var(--green); }
 .btn.ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.4); }
 .foot-meta { margin-top: 56px; border-top: 1px solid rgba(255,255,255,0.18); padding-top: 30px; display: flex; gap: 30px; flex-wrap: wrap; align-items: center; }
 .foot-meta img { height: 66px; width: auto; }

@@ -200,23 +200,35 @@
     select(0);
   }
 
-  /* ---------- email CTA: copy-to-clipboard fallback + toast ----------
-     The button keeps its mailto: href, so visitors with a configured mail
-     client still get a pre-filled draft. But mailto silently does nothing
-     when no client is set up — so on every click we also copy the address
-     to the clipboard and show a toast. Everyone gets feedback. */
+  /* ---------- email CTA: show the address, copy on click ----------
+     No mailto: — that pops an OS "choose an app" dialog and silently fails
+     when no mail client is set up. Instead the button *is* the address (always
+     visible, manually selectable), and clicking copies it to the clipboard with
+     an inline "Copied" flash plus a toast. */
   function initEmailCTA() {
     var btn = document.getElementById("email-cta");
     var toast = document.getElementById("toast");
-    if (!btn || !toast) return;
-    var email = btn.getAttribute("data-email") || "";
-    var timer = null;
+    if (!btn) return;
+    var email = btn.getAttribute("data-email") || btn.textContent;
+    var label = btn.textContent;
+    var toastTimer = null, flashTimer = null;
 
     function showToast(html) {
+      if (!toast) return;
       toast.innerHTML = html;
       toast.classList.add("show");
-      if (timer) clearTimeout(timer);
-      timer = setTimeout(function () { toast.classList.remove("show"); }, 4200);
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { toast.classList.remove("show"); }, 4200);
+    }
+
+    function flash(msg) {
+      btn.classList.add("copied");
+      btn.textContent = msg;
+      if (flashTimer) clearTimeout(flashTimer);
+      flashTimer = setTimeout(function () {
+        btn.textContent = label;
+        btn.classList.remove("copied");
+      }, 1800);
     }
 
     function copyEmail() {
@@ -238,11 +250,11 @@
     }
 
     btn.addEventListener("click", function () {
-      // Let the mailto: default fire for those who have a mail client.
       copyEmail().then(function () {
-        showToast("Email address copied — <b>" + email + "</b>");
+        flash("Copied ✓");
+        showToast("Copied to clipboard ✓");
       }).catch(function () {
-        showToast("Contact us at <b>" + email + "</b>");
+        showToast("Email us at <b>" + email + "</b>");
       });
     });
   }
