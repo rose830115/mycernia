@@ -200,9 +200,57 @@
     select(0);
   }
 
+  /* ---------- email CTA: copy-to-clipboard fallback + toast ----------
+     The button keeps its mailto: href, so visitors with a configured mail
+     client still get a pre-filled draft. But mailto silently does nothing
+     when no client is set up — so on every click we also copy the address
+     to the clipboard and show a toast. Everyone gets feedback. */
+  function initEmailCTA() {
+    var btn = document.getElementById("email-cta");
+    var toast = document.getElementById("toast");
+    if (!btn || !toast) return;
+    var email = btn.getAttribute("data-email") || "";
+    var timer = null;
+
+    function showToast(html) {
+      toast.innerHTML = html;
+      toast.classList.add("show");
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(function () { toast.classList.remove("show"); }, 4200);
+    }
+
+    function copyEmail() {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(email);
+      }
+      return new Promise(function (resolve, reject) {
+        try {
+          var ta = document.createElement("textarea");
+          ta.value = email;
+          ta.style.position = "fixed"; ta.style.top = "-1000px"; ta.style.opacity = "0";
+          document.body.appendChild(ta);
+          ta.focus(); ta.select();
+          var ok = document.execCommand("copy");
+          document.body.removeChild(ta);
+          ok ? resolve() : reject(new Error("copy failed"));
+        } catch (e) { reject(e); }
+      });
+    }
+
+    btn.addEventListener("click", function () {
+      // Let the mailto: default fire for those who have a mail client.
+      copyEmail().then(function () {
+        showToast("Email address copied — <b>" + email + "</b>");
+      }).catch(function () {
+        showToast("Contact us at <b>" + email + "</b>");
+      });
+    });
+  }
+
   /* ---------- init ---------- */
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeModal(); });
   document.getElementById("modal-bg").addEventListener("click", function (e) { if (e.target === this) closeModal(); });
   renderTable();
   renderDemo();
+  initEmailCTA();
 })();

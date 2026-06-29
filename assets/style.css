@@ -184,6 +184,20 @@ section { padding: 84px 0; border-bottom: 1px solid var(--line); }
 .foot-meta img { height: 66px; width: auto; }
 .foot-meta .cite { font-size: 13px; color: rgba(255,255,255,0.72); max-width: 720px; line-height: 1.6; }
 
+/* ---------- copy-to-clipboard toast (Email CTA fallback) ---------- */
+.toast {
+  position: fixed; left: 50%; bottom: 28px;
+  transform: translateX(-50%) translateY(14px);
+  background: var(--ink); color: #fff; font-size: 15px; font-weight: 500;
+  padding: 13px 20px; border-radius: var(--r-util);
+  box-shadow: 0 10px 34px rgba(0,0,0,0.24);
+  opacity: 0; visibility: hidden; pointer-events: none; z-index: 120;
+  max-width: calc(100vw - 40px); white-space: nowrap;
+  transition: opacity .22s ease, transform .22s ease, visibility .22s;
+}
+.toast.show { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+.toast b { color: var(--lemon); font-weight: 700; }
+
 /* ---------- modal ---------- */
 .modal-bg { position: fixed; inset: 0; background: rgba(20,22,20,0.5); display: none; align-items: center; justify-content: center; z-index: 100; padding: 24px; }
 .modal-bg.open { display: flex; }

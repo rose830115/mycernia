@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=9">
+<link rel="stylesheet" href="assets/style.css?v=10">
 </head>
 <body>
 
@@ -168,7 +168,7 @@
            表單建好後：1) 把 href 換成表單網址  2) 移除 style="display:none" 即可上線。
            上線後可把下方「Email us」的 class 由 "btn primary" 改成 "btn ghost"，讓這顆表單按鈕當主色 CTA。 -->
       <a class="btn primary" href="#REPLACE-WITH-FORM-URL" target="_blank" rel="noopener" style="display:none" data-cta="early-access-form">Request early access</a>
-      <a class="btn primary" href="mailto:rose.chen@asiaycm.com?subject=Mycernia%20early%20access">Email us</a>
+      <a class="btn primary" id="email-cta" href="mailto:rose.chen@asiaycm.com?subject=Mycernia%20early%20access" data-email="rose.chen@asiaycm.com">Email us</a>
       <a class="btn ghost" href="https://ycm.group/" target="_blank" rel="noopener">Visit our website</a>
     </div>
     <div class="foot-meta">
@@ -181,12 +181,15 @@
   </div>
 </footer>
 
+<!-- copy-to-clipboard confirmation toast (for the Email CTA) -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
 <!-- species detail modal -->
 <div class="modal-bg" id="modal-bg">
   <div class="modal" id="modal" role="dialog" aria-modal="true"><!-- rendered by app.js --></div>
 </div>
 
-<script src="data/species.js?v=9"></script>
-<script src="assets/app.js?v=9"></script>
+<script src="data/species.js?v=10"></script>
+<script src="assets/app.js?v=10"></script>
 </body>
 </html>
